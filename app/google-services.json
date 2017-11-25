@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "155617004161",
+    "firebase_url": "https://cloud-da374.firebaseio.com",
+    "project_id": "cloud-da374",
+    "storage_bucket": "cloud-da374.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155617004161:android:a1d511f2bb2ab707",
+        "android_client_info": {
+          "package_name": "com.example.maxi.firebaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155617004161-hqebhhhqn3p26q9fc9avgajoi5mqgcf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsn0p6Yo6fie2OVRGeYEWUCsvV5xKigUA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
