@@ -16,12 +16,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText editText1, editText2;
     private Button btnCreate, btnLogin;
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     private static final String TAG = "MainActivity";
 
@@ -53,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(MainActivity.this, user.getUid(),
                                             Toast.LENGTH_LONG).show();
+                                    database = FirebaseDatabase.getInstance();
+                                    myRef = database.getReference("users");
+                                    myRef.child(user.getUid()).child("email").setValue(user.getEmail());
 
                                 } else {
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -84,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                                         Intent intent = new Intent(MainActivity.this, DataBaseActivity.class);
                                         startActivity(intent);
 
+
+
                                     } else {
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                                         Toast.makeText(MainActivity.this, task.getException().getMessage(),
@@ -100,6 +110,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
+        if (auth != null) {
+            Intent intent = new Intent(MainActivity.this, DataBaseActivity.class);
+            startActivity(intent);
+        }
     }
 }

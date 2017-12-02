@@ -1,6 +1,7 @@
 package com.example.maxi.firebaseapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +25,7 @@ import java.util.List;
 public class DataBaseActivity extends AppCompatActivity {
 
     private EditText editText;
-    private Button button, button2, button3, button4;
+    private Button button, button2, button3, button4, button5, button6, button7;
     private TextView textView;
 
     private FirebaseDatabase database;
@@ -41,6 +43,9 @@ public class DataBaseActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
         button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+        button6 = findViewById(R.id.button6);
+        button7 = findViewById(R.id.button7);
         textView = findViewById(R.id.textView);
 
         database = FirebaseDatabase.getInstance();
@@ -133,6 +138,30 @@ public class DataBaseActivity extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               MyDialogFragment dialogFragment = new MyDialogFragment();
+               dialogFragment.show(getSupportFragmentManager(), TAG);
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), ListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                finish();
             }
         });
     }
